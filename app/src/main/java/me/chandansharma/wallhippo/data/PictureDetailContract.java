@@ -29,9 +29,13 @@ public class PictureDetailContract {
 
         public static final String _ID = "_id";
         public static final String COLUMN_PICTURE_ID = "picture_id";
-        public static final String COLUMN_PICTURE_AUTHOR_NAME = "picture_author_name";
         public static final String COLUMN_PICTURE_LIKES = "picture_likes";
         public static final String COLUMN_PICTURE_DOWNLOAD_URL = "picture_download_url";
+        public static final String COLUMN_PICTURE_THUMBNAIL_URL = "picture_thumbnail_url";
+        public static final String COLUMN_PICTURE_AUTHOR_NAME = "picture_author_name";
+        public static final String COLUMN_PICTURE_AUTHOR_USERNAME = "picture_author_username";
+        public static final String COLUMN_PICTURE_COLOR = "picture_color";
+        public static final String COLUMN_USER_PROFILE_PICTURE_URL = "user_profile_picture_url";
 
         //The MIME type of the Place
         public static final String CONTENT_LIST_TYPE =

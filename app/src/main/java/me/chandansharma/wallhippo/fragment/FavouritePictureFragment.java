@@ -76,12 +76,20 @@ public class FavouritePictureFragment extends Fragment {
                     PictureDetail singlePictureDetail = new PictureDetail(
                             pictureDataCursor.getString(pictureDataCursor.getColumnIndex(
                                     PictureDetailEntry.COLUMN_PICTURE_ID)),
-                            pictureDataCursor.getString(pictureDataCursor.getColumnIndex(
-                                    PictureDetailEntry.COLUMN_PICTURE_AUTHOR_NAME)),
                             pictureDataCursor.getInt(pictureDataCursor.getColumnIndex(
                                     PictureDetailEntry.COLUMN_PICTURE_LIKES)),
                             pictureDataCursor.getString(pictureDataCursor.getColumnIndex(
-                                    PictureDetailEntry.COLUMN_PICTURE_ID)));
+                                    PictureDetailEntry.COLUMN_PICTURE_DOWNLOAD_URL)),
+                            pictureDataCursor.getString(pictureDataCursor.getColumnIndex(
+                                    PictureDetailEntry.COLUMN_PICTURE_THUMBNAIL_URL)),
+                            pictureDataCursor.getString(pictureDataCursor.getColumnIndex(
+                                    PictureDetailEntry.COLUMN_PICTURE_AUTHOR_NAME)),
+                            pictureDataCursor.getString(pictureDataCursor.getColumnIndex(
+                                    PictureDetailEntry.COLUMN_PICTURE_AUTHOR_USERNAME)),
+                            pictureDataCursor.getString(pictureDataCursor.getColumnIndex(
+                                    PictureDetailEntry.COLUMN_PICTURE_COLOR)),
+                            pictureDataCursor.getString(pictureDataCursor.getColumnIndex(
+                                    PictureDetailEntry.COLUMN_USER_PROFILE_PICTURE_URL)));
                     mPictureDetailArrayList.add(singlePictureDetail);
                 } while (pictureDataCursor.moveToNext());
             }

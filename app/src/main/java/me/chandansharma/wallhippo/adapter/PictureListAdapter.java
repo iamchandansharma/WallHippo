@@ -27,6 +27,7 @@ import me.chandansharma.wallhippo.R;
 import me.chandansharma.wallhippo.data.PictureDetailContract.PictureDetailEntry;
 import me.chandansharma.wallhippo.model.PictureDetail;
 import me.chandansharma.wallhippo.ui.PictureDetailScreen;
+import me.chandansharma.wallhippo.utils.ApiUrls;
 
 /**
  * Created by iamcs on 2017-05-10.
@@ -160,12 +161,20 @@ public class PictureListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                         ContentValues contentValues = new ContentValues();
                         contentValues.put(PictureDetailEntry.COLUMN_PICTURE_ID,
                                 mPictureDetailArrayList.get(mPictureIndex).getPhotoId());
-                        contentValues.put(PictureDetailEntry.COLUMN_PICTURE_AUTHOR_NAME,
-                                mPictureDetailArrayList.get(mPictureIndex).getPhotoAuthorName());
                         contentValues.put(PictureDetailEntry.COLUMN_PICTURE_LIKES,
                                 mPictureDetailArrayList.get(mPictureIndex).getPhotoLikes());
                         contentValues.put(PictureDetailEntry.COLUMN_PICTURE_DOWNLOAD_URL,
+                                mPictureDetailArrayList.get(mPictureIndex).getPhotoDownloadUrl());
+                        contentValues.put(PictureDetailEntry.COLUMN_PICTURE_THUMBNAIL_URL,
                                 mPictureDetailArrayList.get(mPictureIndex).getPhotoThumbnailUrl());
+                        contentValues.put(PictureDetailEntry.COLUMN_PICTURE_AUTHOR_NAME,
+                                mPictureDetailArrayList.get(mPictureIndex).getPhotoAuthorName());
+                        contentValues.put(PictureDetailEntry.COLUMN_PICTURE_AUTHOR_USERNAME,
+                                mPictureDetailArrayList.get(mPictureIndex).getPhotoAuthorUserName());
+                        contentValues.put(PictureDetailEntry.COLUMN_PICTURE_COLOR,
+                                mPictureDetailArrayList.get(mPictureIndex).getPhotoColor());
+                        contentValues.put(PictureDetailEntry.COLUMN_USER_PROFILE_PICTURE_URL,
+                                mPictureDetailArrayList.get(mPictureIndex).getUserProfilePictureUrl());
 
                         //insert data into database
                         mContext.getContentResolver().insert(PictureDetailEntry.CONTENT_URI,
@@ -197,11 +206,8 @@ public class PictureListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         public void onClick(View v) {
             //Intent for opening large image
             Intent pictureDetailIntent = new Intent(mContext, PictureDetailScreen.class);
-            pictureDetailIntent.putExtra(Intent.EXTRA_TEXT,
-                    mPictureDetailArrayList.get(mPictureIndex).getPhotoAuthorName() + "," +
-                            mPictureDetailArrayList.get(mPictureIndex).getPhotoAuthorUserName() + "," +
-                            mPictureDetailArrayList.get(mPictureIndex).getPhotoThumbnailUrl() + "," +
-                            mPictureDetailArrayList.get(mPictureIndex).getUserProfilePictureUrl());
+            pictureDetailIntent.putExtra(ApiUrls.PICTURE_DATA_KEY,
+                    mPictureDetailArrayList.get(mPictureIndex));
             mContext.startActivity(pictureDetailIntent);
         }
     }

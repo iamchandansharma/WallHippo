@@ -19,4 +19,6 @@ public class ApiUrls {
     public static final String COLLECTION_FEATURED_TAG = "collections/featured/";
     public static final String PAGE_OFFSET = "page";
     public static final String PER_PAGE_ITEM_OFFSET = "per_page";
+
+    public static final String PICTURE_DATA_KEY = "picture_data_key";
 }

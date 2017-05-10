@@ -30,9 +30,13 @@ public class PictureDetailDbHelper extends SQLiteOpenHelper {
                 "CREATE TABLE " + PictureDetailEntry.PICTURE_TABLE_NAME + "(" +
                         PictureDetailEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         PictureDetailEntry.COLUMN_PICTURE_ID + " TEXT, " +
-                        PictureDetailEntry.COLUMN_PICTURE_AUTHOR_NAME + " TEXT, " +
                         PictureDetailEntry.COLUMN_PICTURE_LIKES + " INTEGER, " +
-                        PictureDetailEntry.COLUMN_PICTURE_DOWNLOAD_URL + " TEXT" + ")";
+                        PictureDetailEntry.COLUMN_PICTURE_DOWNLOAD_URL + " TEXT, " +
+                        PictureDetailEntry.COLUMN_PICTURE_THUMBNAIL_URL + " TEXT, " +
+                        PictureDetailEntry.COLUMN_PICTURE_AUTHOR_NAME + " TEXT, " +
+                        PictureDetailEntry.COLUMN_PICTURE_AUTHOR_USERNAME + " TEXT, " +
+                        PictureDetailEntry.COLUMN_PICTURE_COLOR + " TEXT, " +
+                        PictureDetailEntry.COLUMN_USER_PROFILE_PICTURE_URL + " TEXT" + ")";
         db.execSQL(SQL_CREATE_PICTURE_DETAIL_QUERY);
     }
 

@@ -1,11 +1,29 @@
 package me.chandansharma.wallhippo.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by iamcs on 2017-04-26.
  */
 
-public class PictureDetail {
+public class PictureDetail implements Parcelable {
 
+    /**
+     * Storing the Picture data to Parcel object
+     **/
+    public static final Parcelable.Creator<PictureDetail> CREATOR = new Parcelable.Creator<PictureDetail>() {
+
+        @Override
+        public PictureDetail createFromParcel(Parcel source) {
+            return new PictureDetail(source);
+        }
+
+        @Override
+        public PictureDetail[] newArray(int size) {
+            return new PictureDetail[size];
+        }
+    };
     /**
      * All the member variable that use to store information
      */
@@ -32,12 +50,14 @@ public class PictureDetail {
         this.mUserProfilePictureUrl = mUserProfilePictureUrl;
     }
 
-    public PictureDetail(String mPhotoId, String mPhotoAuthorName, int mPhotoLikes,
-                         String mPhotoThumbnailUrl) {
-        this.mPhotoId = mPhotoId;
-        this.mPhotoAuthorName = mPhotoAuthorName;
-        this.mPhotoLikes = mPhotoLikes;
-        this.mPhotoThumbnailUrl = mPhotoThumbnailUrl;
+    private PictureDetail(Parcel in) {
+        this.mPhotoId = in.readString();
+        this.mPhotoLikes = in.readInt();
+        this.mPhotoDownloadUrl = in.readString();
+        this.mPhotoThumbnailUrl = in.readString();
+        this.mPhotoAuthorName = in.readString();
+        this.mPhotoAuthorUserName = in.readString();
+        this.mUserProfilePictureUrl = in.readString();
     }
 
     public String getPhotoId() {
@@ -104,4 +124,19 @@ public class PictureDetail {
         mUserProfilePictureUrl = userProfilePictureUrl;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(mPhotoId);
+        dest.writeInt(mPhotoLikes);
+        dest.writeString(mPhotoDownloadUrl);
+        dest.writeString(mPhotoThumbnailUrl);
+        dest.writeString(mPhotoAuthorName);
+        dest.writeString(mPhotoAuthorUserName);
+        dest.writeString(mUserProfilePictureUrl);
+    }
 }
