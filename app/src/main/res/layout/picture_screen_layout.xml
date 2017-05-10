@@ -21,6 +21,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingBottom="16dp"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
         android:paddingTop="16dp">
 
         <LinearLayout
@@ -35,8 +37,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:maxLines="1"
-                android:padding="4dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:textColor="@android:color/white"
                 android:textSize="16sp"
+                android:textStyle="bold"
                 tools:text="Author Name"/>
 
             <TextView
@@ -44,7 +49,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
-                android:padding="4dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:textColor="@android:color/white"
                 android:textSize="16sp"
                 tools:text="Likes"/>
 
@@ -54,6 +61,7 @@
             android:id="@+id/favourite_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_margin="2dp"
             android:layout_weight="0.2"
             android:contentDescription="@string/favourite_image_icon"

@@ -1,10 +1,12 @@
 package me.chandansharma.wallhippo.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +23,7 @@ import java.util.ArrayList;
 import de.hdodenhof.circleimageview.CircleImageView;
 import me.chandansharma.wallhippo.R;
 import me.chandansharma.wallhippo.model.CollectionDetail;
+import me.chandansharma.wallhippo.ui.CollectionPictureDetailScreen;
 
 /**
  * Created by iamcs on 2017-04-27.
@@ -57,7 +60,7 @@ public class CollectionListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         return mCollectionDetailArrayList.size();
     }
 
-    private class CollectionListItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    private class CollectionListItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         //get the reference of the all views
         private ImageView mPicture;
@@ -112,8 +115,12 @@ public class CollectionListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
         @Override
         public void onClick(View v) {
-
-
+            //Intent for opening large image
+            Intent pictureDetailIntent = new Intent(mContext, CollectionPictureDetailScreen.class);
+            pictureDetailIntent.putExtra(Intent.EXTRA_TEXT,
+                    mCollectionDetailArrayList.get(mCollectionIndex).getCollectionId());
+            Log.d("CS", mCollectionDetailArrayList.get(mCollectionIndex).getCollectionId());
+            mContext.startActivity(pictureDetailIntent);
         }
     }
 }

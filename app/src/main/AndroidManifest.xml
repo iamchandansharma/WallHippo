@@ -22,6 +22,8 @@
         </activity>
         <activity android:name=".ui.PictureDetailScreen">
         </activity>
+        <activity android:name=".ui.CollectionPictureDetailScreen">
+        </activity>
     </application>
 
 </manifest>
