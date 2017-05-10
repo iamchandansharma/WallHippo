@@ -21,7 +21,7 @@ public class PictureDetail {
     public PictureDetail(String mPhotoId, int mPhotoLikes, String mPhotoDownloadUrl,
                          String mPhotoThumbnailUrl, String mPhotoAuthorName,
                          String mPictureAuthorUserName, String mPictureColor,
-                         String mUserProfilePictureUrl){
+                         String mUserProfilePictureUrl) {
         this.mPhotoId = mPhotoId;
         this.mPhotoLikes = mPhotoLikes;
         this.mPhotoDownloadUrl = mPhotoDownloadUrl;
@@ -32,6 +32,13 @@ public class PictureDetail {
         this.mUserProfilePictureUrl = mUserProfilePictureUrl;
     }
 
+    public PictureDetail(String mPhotoId, String mPhotoAuthorName, int mPhotoLikes,
+                         String mPhotoThumbnailUrl) {
+        this.mPhotoId = mPhotoId;
+        this.mPhotoAuthorName = mPhotoAuthorName;
+        this.mPhotoLikes = mPhotoLikes;
+        this.mPhotoThumbnailUrl = mPhotoThumbnailUrl;
+    }
 
     public String getPhotoId() {
         return mPhotoId;
@@ -80,6 +87,7 @@ public class PictureDetail {
     public void setPhotoColor(String photoColor) {
         mPhotoColor = photoColor;
     }
+
     public String getPhotoAuthorUserName() {
         return mPhotoAuthorUserName;
     }

@@ -67,22 +67,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimaryDark"
-        android:padding="16dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="16dp">
 
         <ImageView
             android:id="@+id/picture_download_button"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="48dp"
+            android:layout_weight="1"
             android:contentDescription="@string/download_button"
             android:src="@drawable/ic_file_download_white"/>
 
         <ImageView
+            android:id="@+id/picture_favourite_button"
             android:layout_width="0dp"
             android:layout_height="48dp"
-            android:contentDescription="@string/favorite_button"
             android:layout_weight="1"
+            android:contentDescription="@string/favorite_button"
             android:src="@drawable/ic_favorite_white"/>
 
     </LinearLayout>

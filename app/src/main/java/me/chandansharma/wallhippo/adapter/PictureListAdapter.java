@@ -1,8 +1,11 @@
 package me.chandansharma.wallhippo.adapter;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
@@ -20,6 +24,7 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import java.util.ArrayList;
 
 import me.chandansharma.wallhippo.R;
+import me.chandansharma.wallhippo.data.PictureDetailContract.PictureDetailEntry;
 import me.chandansharma.wallhippo.model.PictureDetail;
 import me.chandansharma.wallhippo.ui.PictureDetailScreen;
 
@@ -56,6 +61,37 @@ public class PictureListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     @Override
     public int getItemCount() {
         return mPictureDetailArrayList.size();
+    }
+
+    private boolean pictureInDatabase(String photoId) {
+        //Uri fore requesting data
+        Uri pictureContentUri = PictureDetailEntry.CONTENT_URI;
+
+        //ArrayList for all store placeId information
+        ArrayList<String> pictureDetailId = new ArrayList<>();
+
+        //Cursor Object to get result from database
+        Cursor pictureDataCursor = mContext.getContentResolver().query(pictureContentUri,
+                null, null, null, null);
+        if (pictureDataCursor != null) {
+            if (pictureDataCursor.moveToFirst()) {
+                do {
+                    String id = pictureDataCursor.getString(pictureDataCursor.getColumnIndex(
+                            PictureDetailEntry.COLUMN_PICTURE_ID));
+                    pictureDetailId.add(id);
+                } while (pictureDataCursor.moveToNext());
+            } else
+                return false;
+        } else
+            return false;
+        if (pictureDetailId.size() != 0) {
+            for (int i = 0; i < pictureDetailId.size(); i++) {
+                if (pictureDetailId.get(i).equals(photoId))
+                    return true;
+            }
+        }
+        pictureDataCursor.close();
+        return false;
     }
 
     private class PictureListItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -106,6 +142,55 @@ public class PictureListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     });
             mPictureAuthorName.setText(mPictureDetailArrayList.get(mPictureIndex).getPhotoAuthorName());
             mPictureLikes.setText(String.valueOf(mPictureDetailArrayList.get(mPictureIndex).getPhotoLikes()) + "\tLikes");
+
+            if (pictureInDatabase(mPictureDetailArrayList.get(mPictureIndex).getPhotoId()))
+                mFavouriteIconImageView.setImageDrawable(ContextCompat.getDrawable(
+                        mContext, R.drawable.ic_favorite_white));
+            else
+                mFavouriteIconImageView.setImageDrawable(ContextCompat.getDrawable(
+                        mContext, R.drawable.ic_favorite_border_white));
+
+            mFavouriteIconImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mFavouriteIconImageView.getDrawable().getConstantState().equals(
+                            ContextCompat.getDrawable(mContext, R.drawable.ic_favorite_border_white)
+                                    .getConstantState())) {
+
+                        ContentValues contentValues = new ContentValues();
+                        contentValues.put(PictureDetailEntry.COLUMN_PICTURE_ID,
+                                mPictureDetailArrayList.get(mPictureIndex).getPhotoId());
+                        contentValues.put(PictureDetailEntry.COLUMN_PICTURE_AUTHOR_NAME,
+                                mPictureDetailArrayList.get(mPictureIndex).getPhotoAuthorName());
+                        contentValues.put(PictureDetailEntry.COLUMN_PICTURE_LIKES,
+                                mPictureDetailArrayList.get(mPictureIndex).getPhotoLikes());
+                        contentValues.put(PictureDetailEntry.COLUMN_PICTURE_DOWNLOAD_URL,
+                                mPictureDetailArrayList.get(mPictureIndex).getPhotoThumbnailUrl());
+
+                        //insert data into database
+                        mContext.getContentResolver().insert(PictureDetailEntry.CONTENT_URI,
+                                contentValues);
+                        Toast.makeText(mContext, "Picture Added to Favourite List",
+                                Toast.LENGTH_SHORT).show();
+                        mFavouriteIconImageView.setImageDrawable(ContextCompat
+                                .getDrawable(mContext, R.drawable.ic_favorite_white_36dp));
+                    } else {
+                        Uri pictureDetailUri = PictureDetailEntry.CONTENT_URI;
+                        String selection = PictureDetailEntry.COLUMN_PICTURE_ID + "=?";
+                        String[] selectionArgs = new String[]{String.valueOf(
+                                mPictureDetailArrayList.get(mPictureIndex).getPhotoId())};
+
+                        //Delete query
+                        mContext.getContentResolver().delete(pictureDetailUri, selection,
+                                selectionArgs);
+
+                        mFavouriteIconImageView.setImageDrawable(ContextCompat
+                                .getDrawable(mContext, R.drawable.ic_favorite_border_white));
+                        Toast.makeText(mContext, "Picture Removed from Favourite List",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
         }
 
         @Override
@@ -121,3 +206,4 @@ public class PictureListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
     }
 }
+

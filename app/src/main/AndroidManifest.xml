@@ -24,6 +24,11 @@
         </activity>
         <activity android:name=".ui.CollectionPictureDetailScreen">
         </activity>
+
+        <provider
+            android:name=".data.PictureDetailProvider"
+            android:authorities="me.chandansharma.wallhippo"
+            android:exported="false"/>
     </application>
 
 </manifest>

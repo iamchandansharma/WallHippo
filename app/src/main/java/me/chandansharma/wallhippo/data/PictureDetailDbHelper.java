@@ -31,12 +31,15 @@ public class PictureDetailDbHelper extends SQLiteOpenHelper {
                         PictureDetailEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         PictureDetailEntry.COLUMN_PICTURE_ID + " TEXT, " +
                         PictureDetailEntry.COLUMN_PICTURE_AUTHOR_NAME + " TEXT, " +
-                        PictureDetailEntry.COLUMN_PICTURE_LIKES + " TEXT, " +
+                        PictureDetailEntry.COLUMN_PICTURE_LIKES + " INTEGER, " +
                         PictureDetailEntry.COLUMN_PICTURE_DOWNLOAD_URL + " TEXT" + ")";
+        db.execSQL(SQL_CREATE_PICTURE_DETAIL_QUERY);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        String SQL_DELETE_PICTURE_DETAIL_QUERY =
+                "DELETE FROM " + PictureDetailEntry.PICTURE_TABLE_NAME;
+        db.execSQL(SQL_DELETE_PICTURE_DETAIL_QUERY);
     }
 }
