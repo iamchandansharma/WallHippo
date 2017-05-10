@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">WallHippo</string>
+
+    <string name="wallpaper">wallpaper</string>
+    <string name="favourite_image_icon">favourite_image_icon</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="full_image">Full Image</string>
+    <string name="download_button">Download Button</string>
+    <string name="favorite_button">Favorite Button</string>
+    <string name="like_button">Like Button</string>
+
+</resources>
