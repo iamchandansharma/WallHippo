@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import me.chandansharma.wallhippo.R;
 import me.chandansharma.wallhippo.fragment.CollectionPictureListFragment;
+import me.chandansharma.wallhippo.fragment.FavouritePictureFragment;
 import me.chandansharma.wallhippo.fragment.PictureListFragment;
 
 public class WallHippoMainScreen extends AppCompatActivity {
@@ -37,24 +38,30 @@ public class WallHippoMainScreen extends AppCompatActivity {
         ViewPager picturePages = (ViewPager) findViewById(R.id.viewpager);
         mTabLayout = (TabLayout) findViewById(R.id.tab_layout);
 
-        if(picturePages != null)
+        if (picturePages != null)
             setViewPager(picturePages);
         mTabLayout.setupWithViewPager(picturePages);
 
-        for(int i = 0 ; i < mTabLayout.getTabCount() ; i++){
-            switch (i){
-                case 0: mTabLayout.getTabAt(i).setIcon(R.drawable.ic_photo_white);
+        for (int i = 0; i < mTabLayout.getTabCount(); i++) {
+            switch (i) {
+                case 0:
+                    mTabLayout.getTabAt(i).setIcon(R.drawable.ic_photo_white);
                     break;
-                case 1: mTabLayout.getTabAt(i).setIcon(R.drawable.ic_collections_white);
+                case 1:
+                    mTabLayout.getTabAt(i).setIcon(R.drawable.ic_collections_white);
+                    break;
+                case 2:
+                    mTabLayout.getTabAt(i).setIcon(R.drawable.ic_favorite_white);
                     break;
             }
         }
     }
 
-    private void setViewPager(ViewPager picturePages){
+    private void setViewPager(ViewPager picturePages) {
         ViewPagerAdapter picturePagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         picturePagerAdapter.addFragment(new PictureListFragment());
         picturePagerAdapter.addFragment(new CollectionPictureListFragment());
+        picturePagerAdapter.addFragment(new FavouritePictureFragment());
         picturePages.setAdapter(picturePagerAdapter);
     }
 
@@ -78,7 +85,7 @@ public class WallHippoMainScreen extends AppCompatActivity {
             return pictureFragment.size();
         }
 
-        private void addFragment(Fragment fragment){
+        private void addFragment(Fragment fragment) {
             pictureFragment.add(fragment);
         }
     }

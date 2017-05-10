@@ -55,11 +55,6 @@ public class PictureListFragment extends Fragment {
     private int visibleThresholdItem = 4;
     private boolean processingNewItem = true;
 
-    public PictureListFragment() {
-        // Required empty public constructor
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

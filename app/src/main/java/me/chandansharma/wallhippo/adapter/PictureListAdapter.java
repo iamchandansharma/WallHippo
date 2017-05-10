@@ -66,6 +66,7 @@ public class PictureListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         private TextView mPictureLikes;
         private LinearLayout mPictureDetailLayout;
         private int mPictureIndex;
+        private ImageView mFavouriteIconImageView;
 
         private PictureListItemHolder(View itemView) {
             super(itemView);
@@ -73,6 +74,7 @@ public class PictureListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             mPictureAuthorName = (TextView) itemView.findViewById(R.id.photo_author_name);
             mPictureDetailLayout = (LinearLayout) itemView.findViewById(R.id.picture_detail_layout);
             mPictureLikes = (TextView) itemView.findViewById(R.id.photo_likes);
+            mFavouriteIconImageView = (ImageView) itemView.findViewById(R.id.favourite_button);
 
             mPicture.setOnClickListener(this);
         }
