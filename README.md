@@ -1,7 +1,7 @@
 # WallHippo
 
-This is an Android App which give the latest beautiful HD Wallpaper from unsplash. App gives the ability to user to save Wallpaper. 
-App list the Collcetion list of thw Wallapaper. 
+This is an Android App which give the latest beautiful HD Wallpaper from [Unsplash.] (https://unsplash.com) App gives the ability to user to save Wallpaper. 
+App list the Collection list of thw Wallapaper. 
 
 ## ScreenShot of the Application
 <img src="https://github.com/CSS08/WallHippo/blob/master/App%20Arts/screenshot_1.png" width="40%" vspace="20" hspace="20"><img src="https://github.com/CSS08/WallHippo/blob/master/App%20Arts/screenshot_2.png" width="40%" vspace="20" hspace="20">
